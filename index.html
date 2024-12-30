@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sanket Kumar</title> 
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMwXvep7Z5f3jRpFiVkSp9S3u5MZ9S91Vb05Sm5" crossorigin="anonymous">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #0d0d1f;
+      color: #fff;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background: linear-gradient(90deg, #1f1f3f, #2a2a6f);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-icons a {
+      color: #fff;
+      font-size: 1.5rem;
+      text-decoration: none;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 50px;
+      background: linear-gradient(90deg, #1f1f3f, #6b6b8f);
+      flex-wrap: wrap;
+    }
+
+    .hero .content {
+      max-width: 600px;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .hero button {
+      background-color: #6b6b8f;
+      color: #fff;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .hero .image img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    .about {
+      padding: 50px;
+      background-color: #12122a;
+      text-align: center;
+    }
+
+    .about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .about p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .resume {
+      padding: 50px;
+      background-color: #14142a;
+    }
+
+    .resume h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .resume-list {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .resume-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .resume-item img {
+      max-width: 100px;
+      border-radius: 10px;
+    }
+
+    .resume-item .details {
+      flex: 1;
+    }
+
+    .resume-item h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .resume-item p {
+      font-size: 1rem;
+      margin-bottom: 5px;
+    }
+
+    .blog {
+      padding: 50px;
+      background-color: #12122a;
+      color: #fff;
+    }
+
+    .blog h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .section-container {
+      margin-top: 30px;
+    }
+
+    .template-example {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .posts ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .posts li {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .posts a {
+      text-decoration: none;
+      color: #6b8fcf;
+    }
+
+    .posts a:hover {
+      text-decoration: underline;
+    }
+
+    .partnership {
+      padding: 50px;
+      background-color: #12122a;
+      text-align: center;
+    }
+
+    .partnership h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .connect {
+      padding: 50px;
+      background-color: #14142a;
+      text-align: center;
+    }
+
+    .connect h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .contact-form label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 1rem;
+    }
+
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .contact-form button {
+      display: block;
+      background-color: #6b6b8f;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin: 0 auto;
+    }
+
+    footer {
+      padding: 20px;
+      text-align: center;
+      background-color: #0a0a1a;
+    }
+
+    footer .social-icons {
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-wrap: wrap;
+        padding: 20px;
+      }
+
+      header h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .hero {
+        padding: 30px;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+      }
+
+      .resume .resume-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .resume-item img {
+        margin-bottom: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 10px;
+      }
+
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .hero button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Sanket Kumar</h1>
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+ <div class="social-icons">
+    <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.youtube.com"><i class="fab fa-youtube"></i></a>
+    <a href="https://linkedin.com"><i class="fab fa-linkedin"></i></a>
+    <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="content">
+    <h1>Sanket Kumar</h1>
+    <p>Trying to get people excited about programming on YouTube & beyond!</p>
+    <button>Drop Me an Email</button>
+  </div>
+  <div class="image">
+    <img src="hero-image-placeholder.jpg" alt="Sanket Kumar" style="max-width: 100%; border-radius: 10px;">
+  </div>
+</section>
+
+<section class="about" id="about">
+  <h2>Hi there!</h2>
+  <p>My name is Sanket Kumar. I am undergraduate student at IISER-Kolkata and have been working on quantum physics research. </p> 
+  <p> I’ve always loved physics growing up. In college I found computer science to be a fun way to apply that same type of logical thinking skills. I love learning new things and YouTube provides a platform where I’m fortunate enough to educate others on the things that I learn.</p>
+</section>
+
+<section class="resume" id="resume">
+  <h2>Resume</h2>
+  <div class="resume-list">
+    <div class="resume-item">
+      <img src="/img/mit.png" alt="MIT logo">
+      <div class="details">
+        <h3>Massachusetts Institute of Technology</h3>
+        <p>MEng in Electrical Engineering and Computer Science | 2022</p>
+        <p>SB in Electrical Engineering and Computer Science | 2019</p>
+        <p>SB in Physics | 2019</p>
+      </div>
+    </div>
+    <div class="resume-item">
+      <img src="/img/meta.jpg" alt="Meta logo">
+      <div class="details">
+        <h3>Meta</h3>
+        <p>Software Engineer | Nov 2022 - Nov 2022</p>
+      </div>
+    </div>
+    <div class="resume-item">
+      <img src="/img/cern.png" alt="CERN logo">
+      <div class="details">
+        <h3>CERN</h3>
+        <p>Research Assistant | Jul 2021 - Oct 2022</p>
+      </div>
+    </div>
+    <div class="resume-item">
+      <img src="/img/physics.png" alt="MIT Physics logo">
+      <div class="details">
+        <h3>MIT Relativistic Heavy Ion Group</h3>
+        <p>Research Assistant | Sep 2020 - Oct 2022</p>
+      </div>
+    </div>
+    <div class="resume-item">
+      <img src="/img/fcc.png" alt="freeCodeCamp logo">
+      <div class="details">
+        <h3>freeCodeCamp</h3>
+        <p>Data Science/ML Curriculum Contributor | Jun 2021 - present</p>
+      </div>
+    </div>
+    <div class="resume-item">
+      <img src="/img/molten_black.png" alt="Molten logo">
+      <div class="details">
+        <h3>Molten, Inc.</h3>
+        <p>Software Engineer - Product Lead | Jun 2019 - Aug 2020</p>
+      </div>
+    </div>
+    <div class="resume-item">
+      <img src="/img/tstlogo.png" alt="Tech Square Trading logo">
+      <div class="details">
+        <h3>Tech Square Trading</h3>
+        <p>Quantitative Research Intern | Jun 2018 - Aug 2018</p>
+      </div>
+    </div>
+    <div class="resume-item">
+      <img src="/img/weiss.png" alt="Weiss Asset Management logo">
+      <div class="details">
+        <h3>Weiss Asset Management</h3>
+        <p>Software Engineering Intern | Jan 2017 - Aug 2017</p>
+      </div>
+    </div>
+    <div class="resume-item">
+      <img src="/img/esiee.png" alt="ESIEE logo">
+      <div class="details">
+        <h3>ESIEE Virtual Reality Lab</h3>
+        <p>Research Intern | May 2016 - Jul 2016</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blog" id="blog">
+  <h2>Blog</h2>
+  <div class="section-container">
+    <div class="container">
+      <div class="row resume-row-label">
+        <div class="col-xs-12">
+          <div class="template-example">
+            <h2 class="template-title-example">Latest Posts</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container posts">
+      <ul>
+        {% for post in site.posts %}
+        <li>
+          <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="partnership" id="partners">
+  <h2>Partnership Opportunities</h2>
+  <p>If you are interested in sponsoring a video or partnering in another way, email me at <a href="mailto:business@keithgalli.com">business@keithgalli.com</a>.</p>
+</section>
+
+<section class="connect" id="contact">
+  <h2>Let’s Connect</h2>
+  <p>I’d love to hear from you! Whether you have questions, ideas, or opportunities to discuss, feel free to reach out.</p>
+  <p>Email: <a href="mailto:sanket.dtg2022@gmail.com">sanket.dtg2022@gmail.com</a></p>
+
+  <div class="contact-form">
+    <form>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>Inspired by dark memes and big dreams :')</p>
+  <p>© Sanket Kumar 2024</p>
+
+  <div class="social-icons">
+    <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.youtube.com"><i class="fab fa-youtube"></i></a>
+    <a href="https://linkedin.com"><i class="fab fa-linkedin"></i></a>
+    <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+  </div>
+</footer>
+
+</body>
+</html>
