@@ -1,259 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanket Kumar | Personal Website</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* BASE STYLES - New Deep Blue Aesthetic */
-        :root {
-            --color-primary: #00458B; /* Deep Navy Blue (Main Dark) */
-            --color-secondary: #F0F4F8; /* Very Light Blue-Gray (Main Light Background) */
-            --color-accent: #00B4D8; /* Sky Blue (Highlight/Hover/Accent) */
-            --color-text-dark: #1C2833; /* Darker Text */
-            --color-text-light: #FFFFFF; /* White Text */
-            --color-border: #BBDEFB; /* Light Blue Border */
-            --color-nav-bg: #005B9F; /* Slightly Lighter Navy */
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio</title>
 
-        body {
-            font-family: 'Courier New', Courier, monospace;
-            background-color: var(--color-secondary);
-            color: var(--color-text-dark);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            opacity: 0; 
-            transition: opacity 0.5s; 
-        }
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
-        /* ------------------------------------------------------------------ */
-        /* SPLASH SCREEN & ANIMATION STYLES (Deep Blue Background) */
-        /* ------------------------------------------------------------------ */
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-        #splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: var(--color-primary); /* Deep Navy Blue Splash Screen */
-            z-index: 9999;
-            opacity: 1;
-            transition: opacity 1s ease-out;
-        }
+<style>
+    :root {
+        --bg-dark: #0b1d51;
+        --bg-main: #102e8f;
+        --text-light: #fff;
+        --accent: #1abc9c;
+    }
 
-        .name-container {
-            font-size: 4rem;
-            font-weight: bold;
-            color: var(--color-accent); /* Sky Blue Text on Navy Background */
-            overflow: hidden; 
-            white-space: nowrap;
-            text-align: center; 
-        }
+    body {
+        margin: 0;
+        /* Default professional font for the entire site */
+        font-family: 'Montserrat', sans-serif; 
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        overflow-x: hidden;
+        transition: background-color 0.5s, color 0.5s;
+    }
 
-        /* Keyframe for a typewriter effect (name reveal) */
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
+    body.light {
+        background-color: #f0f0f0;
+        color: #111;
+    }
 
-        /* Keyframe for a cursor blink effect */
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--color-text-light); } /* Use White/Light color for the cursor */
-        }
+    /* Splash screen */
+    #splash {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--bg-dark);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 1s ease;
+        flex-direction: column; 
+    }
 
-        #animated-name {
-            display: inline-block;
-            overflow: hidden;
-            white-space: nowrap;
-            letter-spacing: 0.15em;
-            width: 0; 
-            border-right: .15em solid var(--color-accent); 
-            
-            /* Animation timing */
-            animation: 
-                typing 2.5s steps(12, end) forwards,
-                blink-caret .75s step-end infinite 2.5s;
-        }
-        
-        /* ------------------------------------------------------------------ */
-        /* GENERAL LAYOUT & COMPONENT STYLES */
-        /* ------------------------------------------------------------------ */
+    body.light #splash {
+        background-color: #f0f0f0;
+    }
 
-        header {
-            text-align: left;
-            padding: 20px;
-            background-color: var(--color-primary);
-            color: var(--color-text-light);
-            font-size: 24px;
-            font-weight: bold;
-        }
+    /* --- SLOW, AESTHETIC SPLASH ANIMATION (Dancing Script) --- */
 
+    #splash-text-container {
+        font-family: 'Dancing Script', cursive; /* Cursive font used ONLY here */
+        font-size: 4rem; 
+        color: var(--text-light);
+        text-shadow: 0 0 8px var(--text-light); 
+        white-space: nowrap; 
+        position: relative; 
+        font-weight: 700;
+    }
+
+    body.light #splash-text-container {
+        color: #111;
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .letter {
+        display: inline-block;
+        opacity: 0;
+        /* 2s duration with a subtle bounce */
+        animation: letterEntrance 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; 
+    }
+
+    @keyframes letterEntrance {
+        0% { opacity: 0; transform: translate(var(--startX), var(--startY)) rotate(var(--startRotate)) scale(0.6); }
+        100% { opacity: 1; transform: translate(0, 0) rotate(0) scale(1); }
+    }
+
+    /* --- Original Site Styles --- */
+    #main-content {
+        opacity: 0;
+        transition: opacity 1s ease;
+        min-height: 100vh;
+        padding: 20px;
+        background-color: var(--bg-dark);
+    }
+
+    body.light #main-content {
+        background-color: #f0f0f0;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        background-color: transparent;
+        padding: 10px 0;
+        margin-bottom: 20px;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: var(--text-light);
+        padding: 10px 20px;
+        margin: 0 5px;
+        border-radius: 5px;
+        transition: color 0.3s;
+    }
+
+    body.light nav a {
+        color: #111;
+    }
+
+    nav a:hover {
+        color: var(--accent);
+    }
+
+    main {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .intro {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    /* Ensure h1 is hidden by default */
+    .intro h1 {
+        display: none;
+    }
+
+
+    .social-links {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 2%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .social-links a {
+        color: var(--text-light);
+        font-size: 1.5rem;
+        text-decoration: none;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    body.light .social-links a {
+        color: #111;
+    }
+
+    .social-links a:hover {
+        color: var(--accent);
+        transform: scale(1.3) rotate(10deg);
+    }
+
+    footer {
+        text-align: center;
+        padding: 10px;
+        background-color: transparent;
+        color: var(--text-light);
+        font-size: 0.85rem; /* Slightly smaller for the footer text */
+    }
+
+    body.light footer {
+        color: #111;
+    }
+
+    /* --- THEME TOGGLE BUTTON STYLES (SINGLE BUTTON) --- */
+    .theme-toggle {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    #toggle-mode-btn {
+        background-color: transparent;
+        border: 1px solid var(--text-light);
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        color: var(--text-light);
+        transition: all 0.3s;
+    }
+
+    body.light #toggle-mode-btn {
+        border-color: #111;
+        color: #111;
+    }
+
+    #toggle-mode-btn:hover {
+        background-color: var(--text-light);
+        color: var(--bg-dark);
+    }
+
+    body.light #toggle-mode-btn:hover {
+        background-color: #111;
+        color: #f0f0f5;
+    }
+
+    /* --- Media Queries --- */
+    @media (max-width: 768px) {
         nav {
-            display: flex;
-            justify-content: center;
-            background-color: var(--color-nav-bg);
-            padding: 10px 0;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--color-text-light);
-            background-color: var(--color-primary);
-            padding: 10px 20px;
-            margin: 0 5px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        nav a:hover {
-            background-color: var(--color-accent); /* Sky Blue on Hover */
-        }
-
-        main {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: var(--color-text-light);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        main a {
-            color: var(--color-accent);
-            text-decoration: underline;
-        }
-        
-        main a:hover {
-            color: var(--color-primary);
-        }
-
-        .intro {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .social-links {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            right: 2%;
-            display: flex;
             flex-direction: column;
-            gap: 15px;
         }
-
-        .social-links a {
-            color: var(--color-primary);
-            font-size: 1.5rem;
-            text-decoration: none;
-            transition: color 0.3s ease, transform 0.3s ease;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 5px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        nav a {
+            margin-bottom: 10px;
         }
-
-        .social-links a:hover {
-            color: var(--color-accent);
-            transform: scale(1.3) rotate(10deg);
-        }
-
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: var(--color-primary);
-            color: var(--color-text-light);
-            margin-top: 20px;
-        }
-
-        .theme-toggle {
-            display: flex;
+        .social-links {
+            position: static;
+            flex-direction: row;
             justify-content: center;
-            margin-top: 10px;
+            margin: 20px 0;
         }
-
-        .theme-toggle button {
-            background-color: var(--color-border);
-            color: var(--color-text-dark);
-            border: none;
-            padding: 10px 15px;
-            margin: 0 5px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+        main {
+            margin: 10px;
+            padding: 15px;
         }
-
-        .theme-toggle button:hover {
-            background-color: var(--color-accent);
-            color: var(--color-text-light);
+        #splash-text-container {
+            font-size: 2.5rem; 
         }
+    }
 
-        /* Media Queries */
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-            }
-
-            nav a {
-                margin-bottom: 10px;
-            }
-
-            .social-links {
-                position: static;
-                flex-direction: row;
-                justify-content: center;
-                margin: 20px 0;
-            }
-            .social-links a {
-                background-color: transparent;
-                box-shadow: none;
-                color: var(--color-primary);
-            }
-
-            main {
-                margin: 10px;
-                padding: 15px;
-            }
+    @media (max-width: 480px) {
+        .intro h1 {
+            font-size: 2rem;
         }
-
-        @media (max-width: 480px) {
-            header {
-                text-align: center;
-                font-size: 20px;
-            }
-
-            .intro h1 {
-                font-size: 1.5rem;
-            }
-
-            .social-links a {
-                font-size: 1.2rem;
-            }
-            #splash-screen .name-container {
-                font-size: 2.5rem;
-            }
+        .social-links a {
+            font-size: 1.2rem;
         }
-    </style>
+    }
+</style>
 </head>
 <body>
 
-<div id="splash-screen">
-    <div class="name-container">
-        <span id="animated-name">Sanket Kumar</span>
-    </div>
+<div id="splash">
+    <div id="splash-text-container"></div>
 </div>
 
 <div id="main-content">
-    <header>Sanket Kumar</header>
-
     <nav>
         <a href="#home">Home</a>
         <a href="#resume">Resume</a>
@@ -262,64 +255,115 @@
 
     <main>
         <div class="intro">
-            <h1>Sanket Kumar</h1>
-            <p>Welcome to my webpage! It's still under development. I enjoy playing cricket and chess, and I am a sunset enthusiast.</p>
+            <p>Welcome to my portfolio! Enjoy exploring.</p>
             <p>
-                Hi there! I'm Sanket, currently a 3rd-year BS-MS student at the Department of Physical Sciences, IISER Kolkata. I'm still honing my skills in basic Machine Learning, as well as programming with C, C++, and Python. I have some experience with LaTeX, primarily in creating scientific documents.
+                Hi! I'm Sanket! I am now 4th year physics student at IISER Kolkata and currently have interest in Quantum Science.
             </p>
-            <p>Thanks for dropping by!</p>
-            <p>Here is my <a href="cv.pdf" target="_blank">CV</a>.</p>
-        </div>
-
-        <div>
-            <p>Currently I am:</p>
-            <ul>
-                <li>Interested in Physics of Quantum Information</li>
-                <li>Looking for interesting and impactful research internship in Physics (please reach out)</li>
-            </ul>
         </div>
 
         <div class="social-links">
-            <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
     </main>
 
     <footer>
-        <p>&copy; Sanket Kumar</p>
-        <p>Inspired by dark memes and big dreams :')</p>
+        <p>&copy; Sanket Kumar | Inspired by dark memes and big dreams :')</p>
         <div class="theme-toggle">
-            <button>Light Mode</button>
-            <button>Dark Mode</button>
+            <button id="toggle-mode-btn">Light Mode</button>
         </div>
     </footer>
 </div>
 
 <script>
-    // Animation time for the name reveal (2.5s typing + 1.5s post-typing wait)
-    const TOTAL_ANIMATION_TIME = 4000; // 4000 milliseconds (4 seconds)
+    // Animation Text is Sanket Kumar
+    const textToAnimate = "Sanket Kumar"; 
+    const textContainer = document.getElementById('splash-text-container');
+    const toggleButton = document.getElementById('toggle-mode-btn');
 
-    window.addEventListener('load', () => {
-        const splashScreen = document.getElementById('splash-screen');
-        const body = document.body;
+    // Directions array for the dynamic entrance effect
+    const directions = [
+        { x: '-100vw', y: '-50vh', rotate: '45deg' }, 
+        { x: '100vw', y: '-50vh', rotate: '-45deg' },
+        { x: '-80vw', y: '80vh', rotate: '-30deg' },  
+        { x: '80vw', y: '80vh', rotate: '30deg' },   
+        { x: '0', y: '-100vh', rotate: '15deg' },     
+        { x: '0', y: '100vh', rotate: '-15deg' },     
+        { x: '-150vw', y: '0', rotate: '0deg' },      
+        { x: '150vw', y: '0', rotate: '0deg' },     
+        { x: '-70vw', y: '-20vh', rotate: '20deg' },  
+        { x: '70vw', y: '20vh', rotate: '-20deg' },   
+        { x: '20vw', y: '-70vh', rotate: '10deg' },   
+        { x: '-20vw', y: '70vh', rotate: '-10deg' },  
+        { x: '50vw', y: '-30vh', rotate: '0deg' } 
+    ];
 
+    // --- Dynamic Letter Creation and Animation Setup ---
+    for (let i = 0; i < textToAnimate.length; i++) {
+        const letterSpan = document.createElement('span');
+        // Use non-breaking space for the space character
+        letterSpan.textContent = textToAnimate[i] === ' ' ? '\xa0' : textToAnimate[i];
+        letterSpan.classList.add('letter');
+        
+        const dirIndex = i % directions.length; 
+        const dir = directions[dirIndex];
+
+        // Apply CSS variables for animation from different origins
+        letterSpan.style.setProperty('--startX', dir.x);
+        letterSpan.style.setProperty('--startY', dir.y);
+        letterSpan.style.setProperty('--startRotate', dir.rotate);
+        
+        // Slower staggered delay (0.15s between letters)
+        letterSpan.style.animationDelay = `${0.15 * i + 0.5}s`; 
+
+        textContainer.appendChild(letterSpan);
+    }
+
+    // --- Splash Screen Timeout Logic ---
+    const staggerTime = 0.15;
+    const animationDuration = 2; 
+    const fadeOutDuration = 1;
+    // Calculation based on "Sanket Kumar" (13 characters)
+    const lastLetterDelay = (textToAnimate.length - 1) * staggerTime; 
+    
+    // Total time until the last letter finishes its entrance animation
+    const totalAnimationEnd = 0.5 + lastLetterDelay + animationDuration;
+
+    setTimeout(() => {
+        const splash = document.getElementById('splash');
+        splash.style.opacity = 0; 
+        
         setTimeout(() => {
-            // 1. Fade out the splash screen
-            splashScreen.style.opacity = '0';
+            splash.style.display = 'none';
+            document.getElementById('main-content').style.opacity = 1;
+        }, fadeOutDuration * 1000); 
+    }, totalAnimationEnd * 1000); 
+    
 
-            // 2. Wait for the fade out to complete (1 second transition time in CSS)
-            setTimeout(() => {
-                splashScreen.style.display = 'none';
-
-                // 3. Fade in the main content of the body
-                body.style.opacity = '1';
-
-            }, 1000); // 1000ms is the CSS transition duration for opacity on #splash-screen
-            
-        }, TOTAL_ANIMATION_TIME);
+    // --- Dark/Light Mode Toggle Logic ---
+    const body = document.body;
+    
+    // Set initial button text based on current state (default is dark mode)
+    if (body.classList.contains('light')) {
+        toggleButton.textContent = 'Dark Mode';
+    } else {
+        toggleButton.textContent = 'Light Mode';
+    }
+    
+    // Add event listener for the single button
+    toggleButton.addEventListener('click', () => {
+        body.classList.toggle('light');
+        
+        // Update button text on toggle
+        if (body.classList.contains('light')) {
+            toggleButton.textContent = 'Dark Mode';
+        } else {
+            toggleButton.textContent = 'Light Mode';
+        }
     });
 </script>
+
 </body>
 </html>
