@@ -6,19 +6,92 @@
     <title>Sanket Kumar | Personal Website</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* BASE STYLES - New Deep Blue Aesthetic */
+        :root {
+            --color-primary: #00458B; /* Deep Navy Blue (Main Dark) */
+            --color-secondary: #F0F4F8; /* Very Light Blue-Gray (Main Light Background) */
+            --color-accent: #00B4D8; /* Sky Blue (Highlight/Hover/Accent) */
+            --color-text-dark: #1C2833; /* Darker Text */
+            --color-text-light: #FFFFFF; /* White Text */
+            --color-border: #BBDEFB; /* Light Blue Border */
+            --color-nav-bg: #005B9F; /* Slightly Lighter Navy */
+        }
+
         body {
             font-family: 'Courier New', Courier, monospace;
-            background-color: #f0f0f0;
-            color: #333;
+            background-color: var(--color-secondary);
+            color: var(--color-text-dark);
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            opacity: 0; 
+            transition: opacity 0.5s; 
         }
+
+        /* ------------------------------------------------------------------ */
+        /* SPLASH SCREEN & ANIMATION STYLES (Deep Blue Background) */
+        /* ------------------------------------------------------------------ */
+
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--color-primary); /* Deep Navy Blue Splash Screen */
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+
+        .name-container {
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--color-accent); /* Sky Blue Text on Navy Background */
+            overflow: hidden; 
+            white-space: nowrap;
+            text-align: center; 
+        }
+
+        /* Keyframe for a typewriter effect (name reveal) */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        /* Keyframe for a cursor blink effect */
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--color-text-light); } /* Use White/Light color for the cursor */
+        }
+
+        #animated-name {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            letter-spacing: 0.15em;
+            width: 0; 
+            border-right: .15em solid var(--color-accent); 
+            
+            /* Animation timing */
+            animation: 
+                typing 2.5s steps(12, end) forwards,
+                blink-caret .75s step-end infinite 2.5s;
+        }
+        
+        /* ------------------------------------------------------------------ */
+        /* GENERAL LAYOUT & COMPONENT STYLES */
+        /* ------------------------------------------------------------------ */
 
         header {
             text-align: left;
             padding: 20px;
-            background-color: #ddd;
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
             font-size: 24px;
             font-weight: bold;
         }
@@ -26,14 +99,14 @@
         nav {
             display: flex;
             justify-content: center;
-            background-color: #eee;
+            background-color: var(--color-nav-bg);
             padding: 10px 0;
         }
 
         nav a {
             text-decoration: none;
-            color: #333;
-            background-color: #ccc;
+            color: var(--color-text-light);
+            background-color: var(--color-primary);
             padding: 10px 20px;
             margin: 0 5px;
             border-radius: 5px;
@@ -41,16 +114,25 @@
         }
 
         nav a:hover {
-            background-color: #bbb;
+            background-color: var(--color-accent); /* Sky Blue on Hover */
         }
 
         main {
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
-            background-color: white;
+            background-color: var(--color-text-light);
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        main a {
+            color: var(--color-accent);
+            text-decoration: underline;
+        }
+        
+        main a:hover {
+            color: var(--color-primary);
         }
 
         .intro {
@@ -69,21 +151,26 @@
         }
 
         .social-links a {
-            color: white;
+            color: var(--color-primary);
             font-size: 1.5rem;
             text-decoration: none;
             transition: color 0.3s ease, transform 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .social-links a:hover {
-            color: #1abc9c;
+            color: var(--color-accent);
             transform: scale(1.3) rotate(10deg);
         }
 
         footer {
             text-align: center;
             padding: 10px;
-            background-color: #ddd;
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
             margin-top: 20px;
         }
 
@@ -94,7 +181,8 @@
         }
 
         .theme-toggle button {
-            background-color: #ccc;
+            background-color: var(--color-border);
+            color: var(--color-text-dark);
             border: none;
             padding: 10px 15px;
             margin: 0 5px;
@@ -104,9 +192,11 @@
         }
 
         .theme-toggle button:hover {
-            background-color: #bbb;
+            background-color: var(--color-accent);
+            color: var(--color-text-light);
         }
 
+        /* Media Queries */
         @media (max-width: 768px) {
             nav {
                 flex-direction: column;
@@ -121,6 +211,11 @@
                 flex-direction: row;
                 justify-content: center;
                 margin: 20px 0;
+            }
+            .social-links a {
+                background-color: transparent;
+                box-shadow: none;
+                color: var(--color-primary);
             }
 
             main {
@@ -142,55 +237,89 @@
             .social-links a {
                 font-size: 1.2rem;
             }
+            #splash-screen .name-container {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
 <body>
 
-<header>Sanket Kumar</header>
-
-<nav>
-    <a href="#home">Home</a>
-    <a href="#resume">Resume</a>
-    <a href="#blog">Blog</a>
-</nav>
-
-<main>
-    <div class="intro">
-        <h1>Sanket Kumar</h1>
-        <p>Welcome to my webpage! It's still under development. I enjoy playing cricket and chess, and I am a sunset enthusiast.</p>
-        <p>
-            Hi there! I'm Sanket, currently a 3rd-year BS-MS student at the Department of Physical Sciences, IISER Kolkata. I'm still honing my skills in basic Machine Learning, as well as programming with C, C++, and Python. I have some experience with LaTeX, primarily in creating scientific documents.
-        </p>
-        <p>Thanks for dropping by!</p>
-        <p>Here is my <a href="cv.pdf" target="_blank">CV</a>.</p>
+<div id="splash-screen">
+    <div class="name-container">
+        <span id="animated-name">Sanket Kumar</span>
     </div>
+</div>
 
-    <div>
-        <p>Currently I am:</p>
-        <ul>
-            <li>Interested in Physics of Quantum Information</li>
-            <li>Looking for interesting and impactful research internship in Physics (please reach out)</li>
-        </ul>
-    </div>
+<div id="main-content">
+    <header>Sanket Kumar</header>
 
-    <div class="social-links">
-        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
-        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-    </div>
-</main>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#resume">Resume</a>
+        <a href="#blog">Blog</a>
+    </nav>
 
-<footer>
-    <p>&copy; Sanket Kumar</p>
-    <p>Inspired by dark memes and big dreams :')</p>
-    <div class="theme-toggle">
-        <button>Light Mode</button>
-        <button>Dark Mode</button>
-    </div>
-</footer>
+    <main>
+        <div class="intro">
+            <h1>Sanket Kumar</h1>
+            <p>Welcome to my webpage! It's still under development. I enjoy playing cricket and chess, and I am a sunset enthusiast.</p>
+            <p>
+                Hi there! I'm Sanket, currently a 3rd-year BS-MS student at the Department of Physical Sciences, IISER Kolkata. I'm still honing my skills in basic Machine Learning, as well as programming with C, C++, and Python. I have some experience with LaTeX, primarily in creating scientific documents.
+            </p>
+            <p>Thanks for dropping by!</p>
+            <p>Here is my <a href="cv.pdf" target="_blank">CV</a>.</p>
+        </div>
 
+        <div>
+            <p>Currently I am:</p>
+            <ul>
+                <li>Interested in Physics of Quantum Information</li>
+                <li>Looking for interesting and impactful research internship in Physics (please reach out)</li>
+            </ul>
+        </div>
+
+        <div class="social-links">
+            <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Sanket Kumar</p>
+        <p>Inspired by dark memes and big dreams :')</p>
+        <div class="theme-toggle">
+            <button>Light Mode</button>
+            <button>Dark Mode</button>
+        </div>
+    </footer>
+</div>
+
+<script>
+    // Animation time for the name reveal (2.5s typing + 1.5s post-typing wait)
+    const TOTAL_ANIMATION_TIME = 4000; // 4000 milliseconds (4 seconds)
+
+    window.addEventListener('load', () => {
+        const splashScreen = document.getElementById('splash-screen');
+        const body = document.body;
+
+        setTimeout(() => {
+            // 1. Fade out the splash screen
+            splashScreen.style.opacity = '0';
+
+            // 2. Wait for the fade out to complete (1 second transition time in CSS)
+            setTimeout(() => {
+                splashScreen.style.display = 'none';
+
+                // 3. Fade in the main content of the body
+                body.style.opacity = '1';
+
+            }, 1000); // 1000ms is the CSS transition duration for opacity on #splash-screen
+            
+        }, TOTAL_ANIMATION_TIME);
+    });
+</script>
 </body>
 </html>
-
