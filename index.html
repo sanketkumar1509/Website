@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio</title>
+<title>Sanket Kumar Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -15,11 +15,13 @@
         --bg-main: #102e8f;
         --text-light: #fff;
         --accent: #1abc9c;
+        /* New Variables for Contact Button Style */
+        --contact-btn-bg: #1f0840; 
+        --contact-btn-hover: #3f1181;
     }
 
     body {
         margin: 0;
-        /* Default professional font for the entire site */
         font-family: 'Montserrat', sans-serif; 
         background-color: var(--bg-dark);
         color: var(--text-light);
@@ -52,10 +54,9 @@
         background-color: #f0f0f0;
     }
 
-    /* --- SLOW, AESTHETIC SPLASH ANIMATION (Dancing Script) --- */
-
+    /* --- SPLASH TEXT ANIMATION --- */
     #splash-text-container {
-        font-family: 'Dancing Script', cursive; /* Cursive font used ONLY here */
+        font-family: 'Dancing Script', cursive; 
         font-size: 4rem; 
         color: var(--text-light);
         text-shadow: 0 0 8px var(--text-light); 
@@ -69,19 +70,20 @@
         text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     }
 
+    /* Letter animation used for splash screen text */
     .letter {
         display: inline-block;
         opacity: 0;
-        /* 2s duration with a subtle bounce */
         animation: letterEntrance 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; 
     }
 
+    /* Global Entrance Keyframe (used by splash text AND nav links via JS) */
     @keyframes letterEntrance {
         0% { opacity: 0; transform: translate(var(--startX), var(--startY)) rotate(var(--startRotate)) scale(0.6); }
         100% { opacity: 1; transform: translate(0, 0) rotate(0) scale(1); }
     }
 
-    /* --- Original Site Styles --- */
+    /* --- Main Content Styles --- */
     #main-content {
         opacity: 0;
         transition: opacity 1s ease;
@@ -94,6 +96,7 @@
         background-color: #f0f0f0;
     }
 
+    /* Navigation Container */
     nav {
         display: flex;
         justify-content: center;
@@ -102,6 +105,7 @@
         margin-bottom: 20px;
     }
 
+    /* Navigation Links (initial state before animation) */
     nav a {
         text-decoration: none;
         color: var(--text-light);
@@ -109,6 +113,23 @@
         margin: 0 5px;
         border-radius: 5px;
         transition: color 0.3s;
+        /* Hiding links initially for animation */
+        opacity: 0; 
+        transform: scale(0.6);
+        
+        /* Setting initial position for animation (used by JS) */
+        --startX: 0; 
+        --startY: -50px; /* Start links off-screen vertically */
+        --startRotate: 0deg;
+    }
+
+    /* Class applied by JS to trigger the entrance animation */
+    nav a.nav-animate {
+        animation: letterEntrance 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    nav a.active-link {
+        color: var(--accent);
     }
 
     body.light nav a {
@@ -124,6 +145,9 @@
         margin: 0 auto;
         padding: 20px;
         border-radius: 10px;
+        /* Added vertical spacing for the minimal content */
+        padding-top: 100px;
+        padding-bottom: 100px;
     }
 
     .intro {
@@ -131,17 +155,16 @@
         margin-bottom: 20px;
     }
     
-    /* Ensure h1 is hidden by default */
     .intro h1 {
         display: none;
     }
 
-
+    /* --- Social Links (Fixed position on right) --- */
     .social-links {
         position: fixed;
         top: 50%;
         transform: translateY(-50%);
-        right: 2%;
+        right: 2%; 
         display: flex;
         flex-direction: column;
         gap: 15px;
@@ -162,24 +185,239 @@
         color: var(--accent);
         transform: scale(1.3) rotate(10deg);
     }
+    
+    /* --- Contact Button Section (In Footer) --- */
+    #contact-footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 0 10px; 
+        margin-bottom: 20px; 
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    body.light #contact-footer {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
 
+    #contact-btn {
+        background-color: var(--contact-btn-bg);
+        color: var(--text-light);
+        border: none;
+        padding: 18px 40px; 
+        font-size: 1.25rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        cursor: pointer;
+        border-radius: 5px;
+        box-shadow: 0 0 20px rgba(31, 8, 64, 0.5); 
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        display: block; 
+        text-decoration: none;
+        width: fit-content;
+    }
+    
+    body.light #contact-btn {
+        background-color: #333;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
+    }
+
+    #contact-btn:hover {
+        background-color: var(--contact-btn-hover);
+        box-shadow: 0 0 30px var(--contact-btn-hover);
+    }
+
+    /* Mouse Scroll Animation Styling */
+    .scroll-mouse {
+        display: block;
+        width: 30px;
+        height: 50px;
+        border: 2px solid var(--text-light);
+        border-radius: 15px;
+        margin: 15px auto 0;
+        position: relative;
+        opacity: 0.8;
+    }
+
+    body.light .scroll-mouse {
+        border-color: #111;
+    }
+
+    .scroll-mouse::before {
+        content: '';
+        position: absolute;
+        width: 4px;
+        height: 8px;
+        background-color: var(--text-light);
+        border-radius: 50%;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: scrollWheel 1.2s infinite ease-out;
+    }
+
+    body.light .scroll-mouse::before {
+        background-color: #111;
+    }
+
+    @keyframes scrollWheel {
+        0% { opacity: 1; transform: translate(-50%, 0); }
+        50% { opacity: 0; transform: translate(-50%, 15px); }
+        100% { opacity: 0; transform: translate(-50%, 0); }
+    }
+    
+    /* --- Resume Section Styling --- */
+    .resume-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        /* Toggle/Transition styles */
+        display: none; 
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+        min-height: 70vh;
+        padding-top: 100px; /* Added spacing */
+    }
+    
+    .resume-container.active {
+        display: block;
+        opacity: 1;
+    }
+
+    body.light .resume-container {
+        background-color: #ffffff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .resume-container h1 {
+        text-align: center;
+        color: var(--accent);
+        margin-bottom: 30px;
+        font-size: 2.2rem;
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 10px;
+        display: block; 
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    body.light .resume-container h1 {
+        color: #0b1d51; 
+        border-color: #0b1d51;
+    }
+
+    section h2 {
+        color: var(--text-light);
+        font-size: 1.8rem;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        border-left: 5px solid var(--accent);
+        padding-left: 10px;
+    }
+    
+    body.light section h2 {
+        color: #333;
+    }
+
+    .resume-item {
+        margin-bottom: 25px;
+        padding-left: 15px;
+        border-left: 3px solid var(--accent);
+    }
+    
+    .resume-item h3 {
+        margin-top: 0;
+        color: var(--text-light); 
+        font-size: 1.4rem;
+        margin-bottom: 5px;
+    }
+    
+    body.light .resume-item h3 {
+        color: #333; 
+    }
+
+    .resume-item p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.7); 
+    }
+    
+    body.light .resume-item p {
+        color: #555; 
+    }
+
+    .resume-item .date {
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.5); 
+        font-size: 0.85rem;
+    }
+    
+    body.light .resume-item .date {
+        color: #777; 
+    }
+
+    ul.skills {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    ul.skills li {
+        background-color: var(--accent);
+        color: var(--bg-dark);
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+
+    .download-resume-btn {
+        display: block;
+        width: fit-content;
+        margin: 30px auto 0;
+        padding: 12px 25px;
+        background-color: var(--accent);
+        color: var(--bg-dark);
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+
+    /* --- Footer Styles --- */
     footer {
         text-align: center;
         padding: 10px;
         background-color: transparent;
         color: var(--text-light);
-        font-size: 0.85rem; /* Slightly smaller for the footer text */
+        font-size: 0.85rem; 
     }
 
     body.light footer {
         color: #111;
     }
+    
+    footer p {
+        margin: 5px 0; 
+    }
 
-    /* --- THEME TOGGLE BUTTON STYLES (SINGLE BUTTON) --- */
+    /* --- Theme Toggle Button --- */
     .theme-toggle {
         display: flex;
         justify-content: center;
         margin-top: 10px;
+        margin-bottom: 20px; 
     }
 
     #toggle-mode-btn {
@@ -215,27 +453,36 @@
         nav a {
             margin-bottom: 10px;
         }
+        
         .social-links {
             position: static;
+            transform: none;
             flex-direction: row;
             justify-content: center;
             margin: 20px 0;
         }
+        
+        #contact-footer {
+            padding: 20px 0 10px;
+        }
+        
         main {
             margin: 10px;
             padding: 15px;
+            padding-top: 50px;
+            padding-bottom: 50px;
         }
+        
         #splash-text-container {
             font-size: 2.5rem; 
         }
-    }
-
-    @media (max-width: 480px) {
-        .intro h1 {
-            font-size: 2rem;
+        
+        .resume-container h1 {
+            font-size: 1.8rem;
         }
-        .social-links a {
-            font-size: 1.2rem;
+        #contact-btn {
+            font-size: 1rem;
+            padding: 15px 30px;
         }
     }
 </style>
@@ -247,30 +494,68 @@
 </div>
 
 <div id="main-content">
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#resume">Resume</a>
-        <a href="#blog">Blog</a>
+    <nav id="main-nav">
+        <a href="#home" class="nav-link" data-target="home">Home</a> 
+        <a href="#resume-section" class="nav-link" data-target="resume">Resume</a> 
+        <a href="#blog" class="nav-link" data-target="blog">Blog</a>
     </nav>
 
     <main>
-        <div class="intro">
+        <div id="home-section" class="intro active-view">
             <p>Welcome to my portfolio! Enjoy exploring.</p>
             <p>
                 Hi! I'm Sanket! I am now 4th year physics student at IISER Kolkata and currently have interest in Quantum Science.
             </p>
         </div>
+        
+        <section id="resume-section" class="resume-container">
+            <h1>My Resume</h1>
+
+            <div class="resume-item">
+                <h2>Education</h2>
+                <h3>Indian Institute of Science Education and Research (IISER), Kolkata</h3>
+                <p>BS-MS in Physics</p>
+                <p class="date">4th Year (Expected Graduation: May 2027)</p>
+
+            </div>
+
+            <div class="resume-item">
+                <h2>Research Internship</h2>
+                <h3>Indian Institute of Technology(BHU), Varanasi </h3>
+                <p class="date">May 2025 - July 2025</p>
+
+            </div>
+            
+            <div class="resume-item">
+                <h3>Qiskit Advocate</h3>
+                <p class="date">September 2025 - Present</p>
+                
+            </div>
+
+            <a href="your_resume.pdf" download target="_blank" class="download-resume-btn">
+                <i class="fas fa-download"></i>Here is my CV
+            </a>
+        </section>
+
 
         <div class="social-links">
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/sanketkumar1509" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/sanket-kumar20000915" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank" title="Twitter (Placeholder)"><i class="fab fa-twitter"></i></a> 
+            <a href="https://www.instagram.com/san3d07470" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
     </main>
 
     <footer>
-        <p>&copy; Sanket Kumar | Inspired by dark memes and big dreams :')</p>
+        <div id="contact-footer">
+            <a href="mailto:sanket.dtg2022@gmail.com" id="contact-btn">
+                DROP ME AN EMAIL
+            </a>
+            <div class="scroll-mouse"></div> 
+        </div>
+
+        <p>&copy; Sanket Kumar</p>
+        <p>Inspired by dark memes and big dreams :')</p>
         <div class="theme-toggle">
             <button id="toggle-mode-btn">Light Mode</button>
         </div>
@@ -282,8 +567,12 @@
     const textToAnimate = "Sanket Kumar"; 
     const textContainer = document.getElementById('splash-text-container');
     const toggleButton = document.getElementById('toggle-mode-btn');
+    const navLinks = document.querySelectorAll('#main-nav .nav-link');
+    const homeView = document.getElementById('home-section');
+    const resumeView = document.getElementById('resume-section');
 
-    // Directions array for the dynamic entrance effect
+
+    // Directions array for the dynamic entrance effect (used for both splash text and nav links)
     const directions = [
         { x: '-100vw', y: '-50vh', rotate: '45deg' }, 
         { x: '100vw', y: '-50vh', rotate: '-45deg' },
@@ -300,35 +589,77 @@
         { x: '50vw', y: '-30vh', rotate: '0deg' } 
     ];
 
-    // --- Dynamic Letter Creation and Animation Setup ---
+    // --- Dynamic Letter Creation (Splash) ---
     for (let i = 0; i < textToAnimate.length; i++) {
         const letterSpan = document.createElement('span');
-        // Use non-breaking space for the space character
         letterSpan.textContent = textToAnimate[i] === ' ' ? '\xa0' : textToAnimate[i];
         letterSpan.classList.add('letter');
         
         const dirIndex = i % directions.length; 
         const dir = directions[dirIndex];
 
-        // Apply CSS variables for animation from different origins
         letterSpan.style.setProperty('--startX', dir.x);
         letterSpan.style.setProperty('--startY', dir.y);
         letterSpan.style.setProperty('--startRotate', dir.rotate);
         
-        // Slower staggered delay (0.15s between letters)
         letterSpan.style.animationDelay = `${0.15 * i + 0.5}s`; 
-
         textContainer.appendChild(letterSpan);
     }
+    
+    // --- Navigation Entrance Animation Setup ---
+    const startNavAnimation = () => {
+        const navDirections = [
+            { x: '-50px', y: '-50px', rotate: '-10deg' }, // Home
+            { x: '0', y: '-50px', rotate: '0deg' },        // Resume
+            { x: '50px', y: '-50px', rotate: '10deg' }     // Blog
+        ];
+        
+        navLinks.forEach((link, index) => {
+            const dir = navDirections[index % navDirections.length];
+            
+            // Apply the cinematic animation properties
+            link.style.setProperty('--startX', dir.x);
+            link.style.setProperty('--startY', dir.y);
+            link.style.setProperty('--startRotate', dir.rotate);
+            
+            // Apply the cinematic animation class with staggered delay
+            link.classList.add('nav-animate');
+            link.style.animationDelay = `${0.1 * index}s`; // Staggered start delay
+        });
+    };
+
+    // --- Page Toggle Logic ---
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const targetId = link.getAttribute('data-target');
+            
+            if (targetId === 'resume') {
+                e.preventDefault();
+                homeView.style.display = 'none';
+                homeView.classList.remove('active-view');
+                resumeView.style.display = 'block';
+                resumeView.classList.add('active'); // Use 'active' class for styling
+            } else if (targetId === 'home') {
+                e.preventDefault();
+                resumeView.style.display = 'none';
+                resumeView.classList.remove('active');
+                homeView.style.display = 'block';
+                homeView.classList.add('active-view');
+            } else if (targetId === 'blog') {
+                // Future blog link logic (currently scrolls to anchor #blog if exists)
+            }
+
+            // Optional: Scroll to the top when switching views
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+
 
     // --- Splash Screen Timeout Logic ---
     const staggerTime = 0.15;
     const animationDuration = 2; 
     const fadeOutDuration = 1;
-    // Calculation based on "Sanket Kumar" (13 characters)
     const lastLetterDelay = (textToAnimate.length - 1) * staggerTime; 
-    
-    // Total time until the last letter finishes its entrance animation
     const totalAnimationEnd = 0.5 + lastLetterDelay + animationDuration;
 
     setTimeout(() => {
@@ -338,6 +669,12 @@
         setTimeout(() => {
             splash.style.display = 'none';
             document.getElementById('main-content').style.opacity = 1;
+            
+            // Ensure home view is active and start nav animation
+            homeView.style.display = 'block';
+            homeView.classList.add('active-view');
+            startNavAnimation();
+            
         }, fadeOutDuration * 1000); 
     }, totalAnimationEnd * 1000); 
     
